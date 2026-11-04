@@ -1,0 +1,5 @@
+# cartas em texto aberto: ficam só no PC
+privado/
+.claude/
+__pycache__/
+.github/
