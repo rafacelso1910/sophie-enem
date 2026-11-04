@@ -182,7 +182,7 @@
 
     if (f === "prova1" || f === "prova2") {
       t.push({ id: "chk", tipo: "livre", titulo: "Conferir o checklist do dia", det: "Documento original com foto e caneta preta de tubo transparente. Portões fecham às 13h (Brasília).", ir: "#prova", irTxt: "Abrir checklist" });
-      if (C.cartas !== false) t.push({ id: "carta", tipo: "livre", titulo: "Ler a carta de hoje 💌", det: "Ela abriu hoje cedo.", ir: "#cartas", irTxt: "Ver cartas" });
+      if (C.cartas !== false) t.push({ id: "carta", tipo: "livre", titulo: "Ler a carta de hoje 🐉", det: "Ela abriu hoje cedo.", ir: "#cartas", irTxt: "Ver cartas" });
       t.push(f === "prova1"
         ? { id: "estrat", tipo: "livre", titulo: "Decidir a ordem antes de entrar", det: "90 questões + redação em 5h30. Reserve uns 80 min pra redação e resolva primeiro o que você domina." }
         : { id: "estrat", tipo: "livre", titulo: "Começar pela área que você domina", det: "90 questões em 5h: dá uns 3 min por questão. Não deixe nada em branco." });
@@ -342,7 +342,7 @@
     if (!c || S.cartas.lidas[id]) return mostrarNovaCarta();
     confete();
     abrirModal(`
-      <div class="envelope-anim" aria-hidden="true">💌</div>
+      <div class="envelope-anim" aria-hidden="true">🐉</div>
       <h2 style="text-align:center">Carta nova!</h2>
       <p class="muted" style="text-align:center">${esc(C.autor)} deixou uma coisa pra você.</p>
       <div class="linha-btns"><button class="btn" data-acao="abrir-carta" data-id="${esc(id)}">Abrir agora</button>
@@ -364,14 +364,14 @@
   function cartaoProximaCarta() {
     if (cartasCarregando) return "";
     if (PACOTE && !CARTAS) {
-      return `<div class="card"><div class="eyebrow">Tem coisa escondida aqui</div><h3>💌 ${esc(C.autor)} deixou cartas pra você</h3>
+      return `<div class="card"><div class="eyebrow">Tem coisa escondida aqui</div><h3>🐉 ${esc(C.autor)} deixou cartas pra você</h3>
         <p class="muted small">Pra abrir, responda uma perguntinha que só você sabe.</p>
         <a class="btn full" href="#cartas">Responder</a></div>`;
     }
     if (!CARTAS) return "";
     const naoLidas = CARTAS.filter((c) => S.cartas.liberadas[c.id] && !S.cartas.lidas[c.id]);
     if (naoLidas.length) {
-      return `<div class="card"><h3>💌 ${plural(naoLidas.length, "carta nova", "cartas novas")} pra ler</h3><a class="btn full" href="#cartas">Abrir</a></div>`;
+      return `<div class="card"><h3>🐉 ${plural(naoLidas.length, "carta nova", "cartas novas")} pra ler</h3><a class="btn full" href="#cartas">Abrir</a></div>`;
     }
     const trancadas = CARTAS.filter((c) => !S.cartas.liberadas[c.id] && c.cond.tipo !== "data");
     if (!trancadas.length) return "";
@@ -553,7 +553,7 @@
     linhas.push(`📒 Caderno de erros: ${plural(S.erros.length, "erro anotado", "erros anotados")} · ${paraRevisar().length} pra revisar hoje · ${plural(S.contadores.revisoes || 0, "revisão feita", "revisões feitas")}`);
     const dg = calcularDiagnostico((S.respostas || []).slice(-DIAG_A_CADA));
     if (dg.pior) linhas.push(`🩺 Onde está mais difícil agora: ${AREAS[dg.pior].nome}`);
-    if (CARTAS) linhas.push(`💌 Cartas abertas: ${CARTAS.filter((c) => S.cartas.liberadas[c.id]).length} de ${CARTAS.length}`);
+    if (CARTAS) linhas.push(`🐉 Cartas abertas: ${CARTAS.filter((c) => S.cartas.liberadas[c.id]).length} de ${CARTAS.length}`);
     const d = hoje(), alvo = d <= D1 ? D1 : D2;
     if (d <= D2) linhas.push(`⏳ Faltam ${plural(diff(d, alvo), "dia", "dias")} pro ${alvo === D1 ? "1º" : "2º"} dia do ENEM`);
     return linhas.join("\n");
@@ -1626,7 +1626,7 @@
     if (!CARTAS) {
       return `${topo("Cartas")}
         <form class="card" id="form-chave">
-          <div class="envelope-anim" aria-hidden="true">💌</div>
+          <div class="envelope-anim" aria-hidden="true">🐉</div>
           <h3 style="text-align:center">${esc(C.autor)} escondeu cartas aqui</h3>
           <p class="muted" style="text-align:center">Elas vão abrindo conforme você estuda. Pra destrancar, responda:</p>
           <label class="campo"><span>${esc(PACOTE.pergunta || "Qual a senha?")}</span>
@@ -1641,7 +1641,7 @@
       const aberta = !!S.cartas.liberadas[c.id];
       if (aberta) {
         const nova = !S.cartas.lidas[c.id];
-        return `<button class="carta-mini${nova ? " nova" : ""}" data-acao="abrir-carta" data-id="${esc(c.id)}"><span class="selo-c">${nova ? "!" : "♥"}</span><b>${esc(c.titulo || "Carta")}</b><small>${nova ? "Nova! Toque pra abrir" : "Ler de novo"}</small></button>`;
+        return `<button class="carta-mini${nova ? " nova" : ""}" data-acao="abrir-carta" data-id="${esc(c.id)}"><span class="selo-c">${nova ? "!" : "🐉"}</span><b>${esc(c.titulo || "Carta")}</b><small>${nova ? "Nova! Toque pra abrir" : "Ler de novo"}</small></button>`;
       }
       const p = progresso(c.cond);
       return `<div class="carta-mini trancada"><span class="selo-c">🔒</span><small>${esc(descrever(c.cond))}</small>${p.alvo ? `<div class="barrinha"><i style="width:${(100 * p.atual) / p.alvo}%"></i></div>` : ""}</div>`;
@@ -1913,7 +1913,7 @@
       salvar({ semCartas: true });
       if (primeira) confete();
       abrirModal(`
-        <div class="envelope-anim" aria-hidden="true">💌</div>
+        <div class="envelope-anim" aria-hidden="true">🐉</div>
         <h2 style="text-align:center">${esc(c.titulo || "Pra você")}</h2>
         <div class="carta-aberta">${esc(c.texto)}<div class="assinatura">${esc(c.assinatura || "Com amor, " + C.autor)}</div></div>
         <div class="linha-btns"><button class="btn full" data-acao="fechar-modal">Fechar</button></div>`);
