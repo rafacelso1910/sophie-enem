@@ -2,7 +2,7 @@
 window.CONFIG = {
   nome: "Sophie",
   // quem montou o app ("" = não aparece em nenhum texto)
-  autor: "Rafael",
+  autor: "Dantas",
 
   // cartas de quem apoia: false esconde a aba Cartas
   cartas: true,
