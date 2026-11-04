@@ -2,10 +2,10 @@
 window.CONFIG = {
   nome: "Sophie",
   // quem montou o app ("" = não aparece em nenhum texto)
-  autor: "",
+  autor: "Rafael",
 
   // cartas de quem apoia: false esconde a aba Cartas
-  cartas: false,
+  cartas: true,
 
   // Datas oficiais do ENEM 2026 (horário de Brasília)
   prova1: "2026-11-08", // Linguagens, Humanas e Redação
