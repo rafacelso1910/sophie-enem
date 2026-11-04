@@ -1564,7 +1564,7 @@
     const lista = ranking.filter((r) => r.t.area === areaRaiox).map(({ t, n }) => {
       const alfa = n ? 0.18 + 0.62 * (n / maxErros) : 0;
       return `<div class="topico"><div><div class="nome">${esc(t.nome)}</div><div class="meta"><span class="pontos" aria-label="Incidência ${t.peso} de 3">${"●".repeat(t.peso)}${"○".repeat(3 - t.peso)}</span> ${t.sub ? esc(t.sub) + " · " : ""}${esc(t.foco)}</div></div>
-        <div class="calor" style="background:rgba(191,43,38,${alfa.toFixed(2)})" title="Erros anotados">${n}</div></div>`;
+        <div class="calor" style="background:rgba(109,63,192,${alfa.toFixed(2)})" title="Erros anotados">${n}</div></div>`;
     }).join("");
     const chips = ["mt", "cn", "ch", "lc"].map((a) => `<button class="opcao" data-acao="raiox-area" data-area="${a}" aria-pressed="${areaRaiox === a}">${AREAS[a].nome}</button>`).join("");
 
@@ -1803,7 +1803,7 @@
     const dpr = window.devicePixelRatio || 1;
     cv.width = innerWidth * dpr; cv.height = innerHeight * dpr;
     ctx.scale(dpr, dpr);
-    const cores = ["#bf2b26", "#e0a02c", "#4c6b3c", "#2f5d70", "#f2e6c9"];
+    const cores = ["#6d3fc0", "#e0a02c", "#4c6b3c", "#2f5d70", "#efe8fa"];
     const ps = Array.from({ length: 110 }, () => ({
       x: innerWidth / 2 + (Math.random() - 0.5) * 80, y: innerHeight * 0.35,
       vx: (Math.random() - 0.5) * 11, vy: -Math.random() * 11 - 4,

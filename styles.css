@@ -1,15 +1,16 @@
 :root{
-  --papel:#e9d9b6;
-  --papel-2:#f2e6c9;
-  --papel-3:#fbf4e3;
-  --tinta:#1d1712;
-  --tinta-fraca:#5b4c3c;
-  --vermelho:#bf2b26;
+  --papel:#e4dcf0;
+  --papel-2:#f0eaf8;
+  --papel-3:#faf7fe;
+  --tinta:#17121f;
+  --tinta-fraca:#5a4f6b;
+  --vermelho:#6d3fc0
+  --erro:#bf2b26;
   --verde:#4c6b3c;
   --sol:#e0a02c;
   --azul:#2f5d70;
-  --linha:rgba(29,23,18,.22);
-  --sombra:#1d1712;
+  --linha:rgba(23,18,31,.22);
+  --sombra:#17121f;
   --area-lc:#bf2b26;
   --area-ch:#c77a12;
   --area-cn:#4c6b3c;
@@ -21,16 +22,17 @@
 }
 @media (prefers-color-scheme:dark){
   :root{
-    --papel:#17130f;
-    --papel-2:#221c16;
-    --papel-3:#2b241c;
-    --tinta:#f2e6c9;
-    --tinta-fraca:#c4b49a;
-    --vermelho:#e5544d;
+    --papel:#0f0b16;
+    --papel-2:#191225;
+    --papel-3:#231a33;
+    --tinta:#efe8fa;
+    --tinta-fraca:#b5a8cc;
+    --vermelho:#a98bff
+    --erro:#e5544d;
     --verde:#8db574;
     --sol:#f0b54a;
     --azul:#6fa8c0;
-    --linha:rgba(242,230,201,.2);
+    --linha:rgba(239,232,250,.2);
     --sombra:#000;
     --area-lc:#e5544d;
     --area-ch:#e89a3a;
@@ -254,13 +256,13 @@ body.modo-desafio .wrap{padding-bottom:calc(24px + var(--safe-b))}
 .alt:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--sombra)}
 .alt .letra{width:28px;height:28px;border:2px solid currentColor;display:grid;place-items:center;font-weight:800;font-size:13px}
 .alt.certa{background:var(--verde);border-color:var(--verde);color:#fff}
-.alt.errada-alt{background:var(--vermelho);border-color:var(--vermelho);color:#fff;animation:treme .35s}
+.alt.errada-alt{background:var(--erro);border-color:var(--erro);color:#fff;animation:treme .35s}
 .alt.apagada{opacity:.45}
 .alt[disabled]{cursor:default}
 @keyframes treme{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
 .feedback{border:3px solid var(--tinta);padding:14px;margin-top:-4px;animation:subir .2s ease}
 .feedback.ok{background:color-mix(in srgb,var(--verde) 22%,var(--papel-2))}
-.feedback.nao{background:color-mix(in srgb,var(--vermelho) 16%,var(--papel-2))}
+.feedback.nao{background:color-mix(in srgb,var(--erro) 16%,var(--papel-2))}
 .feedback b{font-family:"Alfa Slab One",serif;font-weight:400;font-size:20px}
 .feedback p{margin:6px 0 0}
 .feedback .linha-btns{align-items:center}
@@ -275,7 +277,7 @@ body.modo-desafio .wrap{padding-bottom:calc(24px + var(--safe-b))}
 .alt .enem-img{margin:0;max-height:180px}
 .enem-enunciado p{margin:0}
 #en-tempo{font-size:18px;min-width:44px;text-align:right}
-#en-tempo.passou{color:var(--vermelho)}
+#en-tempo.passou{color:var(--erro)}
 
 /* ---- simulado ---- */
 .alt.marcada{background:var(--azul);border-color:var(--azul);color:#fff}
