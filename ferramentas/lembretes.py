@@ -7,6 +7,7 @@ Variáveis de ambiente:
   TITULO / MENSAGEM  opcional: manda uma mensagem sua no lugar da automática
 """
 import base64
+import io
 import datetime as dt
 import json
 import os
@@ -101,6 +102,16 @@ def main():
     momento = os.environ.get("MOMENTO") or ("manha" if agendado.startswith("0 9 ") else "noite" if agendado else ("manha" if agora.hour < 14 else "noite"))
 
     titulo, corpo = (os.environ.get("TITULO") or "").strip(), (os.environ.get("MENSAGEM") or "").strip()
+
+    # Mensagem por arquivo: ao enviar (push) um mensagem.txt novo, a 1ª linha é o título e o resto é o texto.
+    if os.environ.get("TESTE") and os.path.exists("mensagem.txt"):
+        import subprocess
+        mudou = subprocess.run(["git", "diff-tree", "--no-commit-id", "--name-only", "-r", "HEAD"], capture_output=True, text=True).stdout.split()
+        if "mensagem.txt" in mudou:
+            linhas = io.open("mensagem.txt", encoding="utf-8").read().strip().splitlines()
+            if len(linhas) >= 2:
+                titulo, corpo = linhas[0].strip(), "\n".join(linhas[1:]).strip()
+                os.environ.pop("TESTE", None)
     if not corpo:
         msg = mensagem(momento, agora, cfg, ler_agenda())
         if not msg:
