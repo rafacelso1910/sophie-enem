@@ -73,13 +73,16 @@ def main():
         if not (c.get("texto") or "").strip():
             puladas.append(c["id"])
             continue
-        cartas.append({
+        item = {
             "id": c["id"],
             "titulo": c.get("titulo", ""),
             "cond": c["cond"],
             "texto": c["texto"].strip(),
             "assinatura": c.get("assinatura") or assinatura,
-        })
+        }
+        if c.get("aviso"):  # aviso do pop-up "carta nova" (título e texto próprios)
+            item["aviso"] = {"titulo": c["aviso"].get("titulo", ""), "texto": c["aviso"].get("texto", "")}
+        cartas.append(item)
 
     iv = secrets.token_bytes(12)
     dados = AESGCM(chave(src["resposta"], salt)).encrypt(iv, json.dumps({"cartas": cartas}, ensure_ascii=False).encode(), None)

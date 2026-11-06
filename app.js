@@ -343,8 +343,8 @@
     confete();
     abrirModal(`
       <div class="envelope-anim" aria-hidden="true">🐉</div>
-      <h2 style="text-align:center">Carta nova!</h2>
-      <p class="muted" style="text-align:center">${esc(C.autor)} deixou uma coisa pra você.</p>
+      <h2 style="text-align:center">${esc(c.aviso ? c.aviso.titulo : "Carta nova!")}</h2>
+      <p class="muted" style="text-align:center">${esc(c.aviso ? c.aviso.texto : C.autor + " deixou uma coisa pra você.")}</p>
       <div class="linha-btns"><button class="btn" data-acao="abrir-carta" data-id="${esc(id)}">Abrir agora</button>
       <button class="btn ghost" data-acao="fechar-modal">Depois</button></div>`);
   }
